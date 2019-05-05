@@ -1,17 +1,23 @@
 #include <iostream>
-#inlcude <string>
+#include <string>
 using namespace std;
 
-Class Kuriye
+class Kuriye
 {
 private:
     string name;
     string surname;
     string TC;
     int age;
+public:
+void setName(string x){name = x;}
+void setSurname(string x){surname = x;}
+void setTC(string x){TC = x;}
+void setAge(int x){age = x;}
+
 };
 
-Class Islem
+class Islem
 {
 public:
     void find() {}
@@ -21,7 +27,7 @@ public:
     void add() {}
 };
 
-Class Mainclass: Kuriye, Islem
+class Mainclass: public Kuriye, public Islem
 {
 };
 
@@ -30,5 +36,3 @@ int main(void)
 
     return 0;
 }
-
-return 0;
