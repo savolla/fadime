@@ -1,10 +1,11 @@
 #include <iostream>
-#inlcude <string>
+#include <string>
+#include <cstring>
 #include <ctime> //Anlık saati cekmek icin kullanilan kutuphane,saat ve servis bilgileri uzerınde ıslem yapicaz//
 using namespace std;
 bool kgiris;
 
-Class kurye
+class Kurye
 {
 private:
     string ad;
@@ -13,51 +14,50 @@ private:
     int yas;
 };
 
-Class islem1
+class Islem1
 {
 public:
     void ekle() {}
     void listele() {}
     void ara() {}
-    
 };
-class islem2 {
+
+class Islem2 {
     public:
    void sil() {}
    void guncelle() {}
-    
-    
 };
-class kullaniciadi_sifre {
+
+class Giris {
     protected:
     string kullaniciadi;
     string sifre;
 };
-class anaclass:public kurye,public islem1,public islem2,public kullaniciadi_sifre {
-    public:
-	void secim();//kullaniciya en basta secim yaptırıcaz servis kaydı ekle çıkış gibi//
-    void giris();//yonetim giris paneli olacak, asagıda  yazdım bakabilirsin kanka//
-	void listele_guncelle();
-	void serviskayidi_ekleme();
-	void serviskayidi_silme();
-	void set_kullaniciadi(string *adres);//kullanici adini setle gonderdim yazdım asagıda da//
-	void set_sifre(string *adres);//sifreyi setle gonderdim yazdım asagıda da//
-	string get_kullaniciadi();//kullanici adini getle cagirdim yazdım asagıda da//
-	string get_sifre();//sifreyi getle cagırdım yazdım asagıda da//
-	anaclass() {
-		kullaniciadi = "oleksi";
-		sifre = "kadir";
-	}
-	
 
+class Anaclass: public Kurye, public Islem1, public Islem2, public Giris {
+    public:
+        void giris();
+        void secim();
+        void listele_guncelle();
+        void serviskayidi_ekleme();
+        void serviskayidi_silme();
+        void set_kullaniciadi(string *adres);
+        void set_sifre(string *adres);
+        string get_kullaniciadi();
+        string get_sifre();
+
+        Anaclass() {
+            kullaniciadi = "oleksi";
+            sifre = "kadir";
+        }
 };
+
 void yazdir(string deger, bool durum) {
 	for (int i = 0; i < deger.length(); i++)
 	{
 		cout << deger[i];
-		
-
-	}if (durum)
+	}
+    if (durum)
 	{
 		cout << endl;
 	}
@@ -70,22 +70,20 @@ string sdonusturme(char *deger) {
 	return deger2;
 }
     
-    
-    
-    
-string anaclass::get_kullaniciadi() {
+// Anaclass'ın fonksiyonları
+string Anaclass::get_kullaniciadi() {
 	return kullaniciadi;
 }
-string anaclass::get_sifre() {
+string Anaclass::get_sifre() {
 	return sifre;
 }
-void anaclass::set_kullaniciadi(string *adres) {
+void Anaclass::set_kullaniciadi(string *adres) {
 	kullanici = *adres;
 }
-void anaclass::set_sifre(string *adres) {
+void Anaclass::set_sifre(string *adres) {
 	sifre = *adres;
 }
-void anaclass::giris() {
+void Anaclass::giris() {
 	char kullaniciadi[50], sifre[50];
 	string kullanici = "", parola = "";
 	yazdir("Kullanici Adi:", true);
@@ -115,8 +113,5 @@ void anaclass::giris() {
 
 int main(void)
 {
-
     return 0;
 }
-
-return 0;
