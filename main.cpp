@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
-#inclute <fstream>
+#include <fstream>
 using namespace std;
 
-class Kuriye
+class Carrier
 {
     private:
         string name;
@@ -20,10 +20,10 @@ class Kuriye
         string getName(){return name;}
         string getSurname(){return surname;}
         string getTC(){return TC;}
-        int getAge(){return Age;}
+        int getAge(){return age;}
 };
 
-class Islem
+class Operation
 {
     public:
         void find() {}
@@ -33,12 +33,33 @@ class Islem
         void add() {}
 };
 
-class Mainclass: public Kuriye, public Islem
+class UserInterface
+{
+        public:
+        UserInterface()
+        {
+                cout << " .--------------------------------------------." << endl;
+                cout << "| Olexy Kargo Otomasyon Sistemine Hos Geldiniz |" << endl;
+                cout << " `--------------------------------------------'" << endl;
+                cout << "  `-> Su anda ne yapmak istersiniz ?" << endl;
+                cout << "      `-> 1 ~ LISTELE  " << endl;
+                cout << "      `-> 2 ~ BUL      " << endl;
+                cout << "      `-> 3 ~ EKLE     " << endl;
+                cout << "      `-> 4 ~ GUNCELLE " << endl;
+                cout << "      `-> 5 ~ SIL      " << endl;
+        }
+        ~UserInterface()
+        {
+                cout << "Iyi Gunler !" << endl;
+        }
+};
+
+class Automation: public Carrier, public Operation
 {
 };
 
 int main(void)
 {
-
-    return 0;
+        UserInterface GUI;
+        return 0;
 }
