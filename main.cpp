@@ -1,6 +1,7 @@
 #include <iostream> // basic I/O
 #include <string> // KATARS
 #include <fstream> // file I/O
+#include <iomanip> // another I/O but with "sauce"
 using namespace std;
 
 class Carrier
@@ -9,17 +10,20 @@ class Carrier
         string name;
         string surname;
         string TC;
+        string order;
         int age;
     public:
         // setters
         void setName(string x){name = x;}
         void setSurname(string x){surname = x;}
         void setTC(string x){TC = x;}
+        void setOrder(string x){order = x;}
         void setAge(int x){age = x;}
         // getters
         string getName(){return name;}
         string getSurname(){return surname;}
         string getTC(){return TC;}
+        string getOrder(){return order;}
         int getAge(){return age;}
 };
 
@@ -32,27 +36,23 @@ class Operation
         void del() {}
         void add()
         {
-        goBackHereIfUserIsStupid:
-        ifstream infile;
-        infile.open("database.txt",ios::in);
-        int size=80;
-        char line[size];
-        int howManyRecords;
-        cout << "Kac kayıt girilecek? : ";
-        cin >> howManyRecords;
-        Carrier newCarrier;
-        string tmp;
-        while(howManyRecords > 0)
-        {
-               infile.getline(line,size);
-               cout<<"Name : "; cin >> tmp; newCarrier.setName(tmp);
-               infile.getline(line,size);
-               cout<<"Surname : "<<line<<endl;
-               infile.getline(line,size);
-               cout<<"LANGUAGE : "<<line<<endl;
-               howManyRecords--;
-        }
-        infile.close();
+                system("clear");
+                string record[5];
+                cout << "TC     " << endl; cout << "`-> "; cin >> record[0];
+                cout << "Isim   " << endl; cout << "`-> "; cin >> record[1];
+                cout << "Soyisim" << endl; cout << "`-> "; cin >> record[2];
+                cout << "Yas    " << endl; cout << "`-> "; cin >> record[3];
+                cout << "Siparis" << endl; cout << "`-> "; cin >> record[4];
+                system("clear");
+
+                ofstream file("database.txt", ios::app);
+                for(int i=0 ;i<6 ;i++)
+                {
+                        file << '|'<< record[i]<< setw(16 - (record[i].size()));
+                }
+                file << "|" << endl;
+                file << "\r\n";
+                file.close();
         }
 };
 
@@ -65,11 +65,14 @@ class UserInterface
                         cout << "| Olexy Kargo Otomasyon Sistemine Hos Geldiniz |" << endl;
                         cout << " `--------------------------------------------'" << endl;
                         cout << "  `-> Su anda ne yapmak istersiniz ?" << endl;
+                        cout << "      |                " << endl;
                         cout << "      `-> 1 ~ LISTELE  " << endl;
                         cout << "      `-> 2 ~ BUL      " << endl;
                         cout << "      `-> 3 ~ EKLE     " << endl;
                         cout << "      `-> 4 ~ GUNCELLE " << endl;
                         cout << "      `-> 5 ~ SIL      " << endl;
+                        cout << "      |                " << endl;
+                        cout << "      `-> 0 ~ [CIKIS]  " << endl;
                         cout << ">> ";
                 }
                 ~UserInterface()
