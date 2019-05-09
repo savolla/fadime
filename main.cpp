@@ -1,6 +1,6 @@
-#include <iostream>
-#include <string>
-#include <fstream>
+#include <iostream> // basic I/O
+#include <string> // KATARS
+#include <fstream> // file I/O
 using namespace std;
 
 class Carrier
@@ -30,36 +30,75 @@ class Operation
         void list() {}
         void update() {}
         void del() {}
-        void add() {}
+        void add()
+        {
+        goBackHereIfUserIsStupid:
+        ifstream infile;
+        infile.open("database.txt",ios::in);
+        int size=80;
+        char line[size];
+        int howManyRecords;
+        cout << "Kac kayıt girilecek? : ";
+        cin >> howManyRecords;
+        Carrier newCarrier;
+        string tmp;
+        while(howManyRecords > 0)
+        {
+               infile.getline(line,size);
+               cout<<"Name : "; cin >> tmp; newCarrier.setName(tmp);
+               infile.getline(line,size);
+               cout<<"Surname : "<<line<<endl;
+               infile.getline(line,size);
+               cout<<"LANGUAGE : "<<line<<endl;
+               howManyRecords--;
+        }
+        infile.close();
+        }
 };
 
 class UserInterface
 {
         public:
-        UserInterface()
-        {
-                cout << " .--------------------------------------------." << endl;
-                cout << "| Olexy Kargo Otomasyon Sistemine Hos Geldiniz |" << endl;
-                cout << " `--------------------------------------------'" << endl;
-                cout << "  `-> Su anda ne yapmak istersiniz ?" << endl;
-                cout << "      `-> 1 ~ LISTELE  " << endl;
-                cout << "      `-> 2 ~ BUL      " << endl;
-                cout << "      `-> 3 ~ EKLE     " << endl;
-                cout << "      `-> 4 ~ GUNCELLE " << endl;
-                cout << "      `-> 5 ~ SIL      " << endl;
-        }
-        ~UserInterface()
-        {
-                cout << "Iyi Gunler !" << endl;
-        }
+                UserInterface()
+                {
+                        cout << " .--------------------------------------------." << endl;
+                        cout << "| Olexy Kargo Otomasyon Sistemine Hos Geldiniz |" << endl;
+                        cout << " `--------------------------------------------'" << endl;
+                        cout << "  `-> Su anda ne yapmak istersiniz ?" << endl;
+                        cout << "      `-> 1 ~ LISTELE  " << endl;
+                        cout << "      `-> 2 ~ BUL      " << endl;
+                        cout << "      `-> 3 ~ EKLE     " << endl;
+                        cout << "      `-> 4 ~ GUNCELLE " << endl;
+                        cout << "      `-> 5 ~ SIL      " << endl;
+                        cout << ">> ";
+                }
+                ~UserInterface()
+                {
+                        cout << "Iyi Gunler !" << endl;
+                }
+                void getChoise()
+                {
+                        int choiseFromMenu;
+                        Operation operationObject;
+                        cin >> choiseFromMenu;
+                        if (choiseFromMenu == 1){operationObject.list();}
+                        else if (choiseFromMenu == 2){operationObject.find();}
+                        else if (choiseFromMenu == 3){operationObject.add();}
+                        else if (choiseFromMenu == 4){operationObject.update();}
+                        else if (choiseFromMenu == 5){operationObject.del();}
+                        else {cout << "Yanlış bir karakter girdiniz" << endl;}
+                }
 };
 
-class Automation: public Carrier, public Operation
-{
-};
+class Automation:
+        public Carrier,
+        public Operation,
+        public UserInterface
+{};
 
 int main(void)
 {
-        UserInterface GUI;
+        Automation object;
+        object.getChoise();
         return 0;
 }
