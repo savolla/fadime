@@ -12,3 +12,4 @@
 |84927384722     |Mahmut          |Yılmaz          |23              |Rulman          |Erkek           |Gaziantep       |
 |74623184433     |Mikael          |Akerfeldt       |45              |Gibson          |Erkek           |Istanbul        |
 |48438392822     |Halil           |Avci            |45              |Servo Motor     |Erkek           |Kocaeli         |
+|12345678901     |Fadime          |Demircan        |38              |Quiz            |Kadin           |Duzce           |

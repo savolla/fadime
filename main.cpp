@@ -211,7 +211,7 @@ class Automation:
                         else if (choiseFromMenu == 3){add();}
                         else if (choiseFromMenu == 4){update();}
                         else if (choiseFromMenu == 5){del();}
-                        else if (choiseFromMenu == 0){cout << "Gule gule :)"; return 0;}
+                        else if (choiseFromMenu == 0){system("clear"); cout << "\nGule Gule :)\n\n"; return 0;}
                         else {cout << "Yanlış bir karakter girdiniz" << endl;}
                 }
                 cout << endl;
@@ -222,5 +222,6 @@ int main(void)
 {
         Automation object;
         object.menu();
+        int a = 0;
         return 0;
 }
