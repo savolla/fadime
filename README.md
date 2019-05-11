@@ -6,6 +6,9 @@ This my *stupid* <del>homework</del>
 
 # TODO List
 
--   Order is not working properly
-    -   Use `getline()` instead of `cin`
+-   Create Two more functions
+    -   `update()` and `find()`
+
+-   <del>Order is not working properly</del>
+    -   <del>Use `getline()` instead of `cin`</del>
 

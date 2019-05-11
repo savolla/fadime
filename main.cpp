@@ -108,7 +108,7 @@ class Operation
                 //cout << " Siparis" << endl; cout << "     `-> "; cin >> record[4];
 // +PROTECTED
 
-                string empty; getline(cin,empty); // This line is  just for prevent C++'s obscurity.
+                string empty; getline(cin,empty); // This line is just for preventing C++'s obscurity.
                 cout << " TC     " << endl; cout << "     `-> "; getline(cin,record[0]);
                 cout << " Isim   " << endl; cout << "     `-> "; getline(cin,record[1]);
                 cout << " Soyisim" << endl; cout << "     `-> "; getline(cin,record[2]);
