@@ -37,7 +37,6 @@ class Carrier
 class Operation
 {
     public:
-        void find() {}
         void list()
         {
                 system("clear");
@@ -52,12 +51,11 @@ class Operation
                 // Drawing a line below the database.
                 for (int i=0; i<170; i++) {cout << "\b";}
                 cout << "\'";
-                for (int i=0; i<=110; i++) {cout << "-";}
+                for (int i=0; i<=117; i++) {cout << "-";}
                 cout << "\'\n" << endl;
         }
-        void update() {}
         void del()
-                {
+        {
                 system("clear");
                 list();
                 string TCno;cout << "Silinecek Kuryenin TC kimlik numarası: " << endl;cout << "`-> "; cin >> TCno;
@@ -84,7 +82,6 @@ class Operation
                 system("echo \".-------------------------.\" | lolcat");
                 system("echo \"|Kayit basarıyla silindi!!|\" | lolcat");
                 system("echo \"'-------------------------'\" | lolcat");
-
         }
         void add()
         {
@@ -109,7 +106,7 @@ class Operation
                 ofstream file("database.txt", ios::app);
                 for(int i=0 ;i<7 ;i++)
                 {
-                        file << '|'<< record[i]<< setw(16 - (record[i].size()));
+                        file << '|'<< record[i]<< " " << setw(16 - (record[i].size()));
                 }
                 file << "|"<< endl;
                 file.close();
@@ -119,6 +116,66 @@ class Operation
                 system("echo \".--------------------------.\" | lolcat");
                 system("echo \"| Kayit basariyla eklendi! |\" | lolcat");
                 system("echo \"'--------------------------'\" | lolcat");
+        }
+        void find()
+        {
+                system("clear");
+                list();
+                string cppIsOdd; getline(cin,cppIsOdd); // This line is just for preventing C++'s obscurity
+                string value;cout << "Aranacak Degeri Giriniz: " << endl;cout << "`-> "; getline(cin,value);
+                value = "|" + value + " ";
+                ifstream originalFile("database.txt", ios::in);
+                ofstream temporaryFile("tmp.txt", ios::out);
+                string placeHolderString = "";
+
+                while (getline(originalFile, placeHolderString))
+                {
+                        if (placeHolderString.find(value) == string::npos)
+                        {
+                                continue;
+                        }
+                        temporaryFile << placeHolderString << endl;
+                        cout << placeHolderString << endl;
+                }
+                originalFile.close();
+                temporaryFile.close();
+
+                fstream file;
+                string contentsOfTmptxt;
+                file.open("tmp.txt",ios::in);
+                system("clear");
+
+                // nice message with candies :)
+                system("echo \".------------------.\" | lolcat");
+                system("echo \"|Bulunan kayıtlar: |\" | lolcat");
+                system("echo \"'------------------'\" | lolcat");
+
+                for (int i=0; i< )
+                cout << "| \"" << value << "\" icin bulunan kayitlar" << endl;
+
+                // Drawing a line above the found values.
+                cout << ".";
+                for (int i=0; i<=117; i++) {cout << "-";}
+                cout << ".\n" << endl;
+                for (int i=0; i<170; i++) {cout << "\b";}
+
+                // feeding screen with contents of tmp.txt
+                while(!file.eof())
+                {
+                        getline(file,contentsOfTmptxt);
+                        cout << contentsOfTmptxt << endl;
+                }
+
+                // Drawing a line below the found values.
+                for (int i=0; i<170; i++) {cout << "\b";}
+                cout << "\'";
+                for (int i=0; i<=117; i++) {cout << "-";}
+                cout << "\'\n" << endl;
+                file.close();
+                remove("tmp.txt");
+        }
+        void update()
+        {
         }
 };
 
@@ -165,6 +222,23 @@ class UserInterface
                         }
                         cout << endl;
                 }
+
+                void popupMessage(string textMessage, string variable = "")
+                {
+                        int lengthOfTextMessage = textMessage.length();
+                        int lengthOfVariable = variable.length();
+                        // drawing upper line
+                        cout << ".-";
+                        for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
+                        cout << "-."; cout << endl;
+                        // drawing the message
+                        cout << "| " << variable << " " << textMessage << " |" <<  endl;
+                        // drawing the lower
+                        cout << "'~";
+                        for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
+                        cout << "~'"; cout << endl;
+                }
+
 };
 
 class Automation:
