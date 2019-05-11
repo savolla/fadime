@@ -12,19 +12,26 @@ class Carrier
         string TC;
         string order;
         string age;
+        unsigned char gender;
+        string location;
+
     public:
         // setters
         void setName(string x){name = x;}
         void setSurname(string x){surname = x;}
         void setTC(string x){TC = x;}
         void setOrder(string x){order = x;}
-        void setAge(int x){age = x;}
+        void setAge(string x){age = x;}
+        void setGender(unsigned char x){gender = x;}
+        void setLocation(string x){location = x;}
         // getters
         string getName(){return name;}
         string getSurname(){return surname;}
         string getTC(){return TC;}
         string getOrder(){return order;}
         string getAge(){return age;}
+        unsigned char getGender(){return gender;}
+        string getLocation(){return location;}
 };
 
 class Operation
@@ -45,7 +52,7 @@ class Operation
                 // Drawing a line below the database.
                 for (int i=0; i<170; i++) {cout << "\b";}
                 cout << "\'";
-                for (int i=0; i<=78; i++) {cout << "-";}
+                for (int i=0; i<=110; i++) {cout << "-";}
                 cout << "\'\n" << endl;
         }
         void update() {}
@@ -72,13 +79,8 @@ class Operation
                 rename("tmp.txt","database.txt");
                 system("clear");
                 list();
-// +PROTECTED
-                //cout << ".--------------------------." << endl;
-                //cout << "| Kayıt başarıyla silindi! |" << endl;
-                //cout << "'--------------------------'" << endl;
-// +PROTECTED
 
-                // nice message with candy
+                // nice message with candies :)
                 system("echo \".-------------------------.\" | lolcat");
                 system("echo \"|Kayit basarıyla silindi!!|\" | lolcat");
                 system("echo \"'-------------------------'\" | lolcat");
@@ -87,38 +89,25 @@ class Operation
         void add()
         {
                 system("clear");
-                string record[5];
-// +PROTECTED
-                //cout << ".--------------------------------------------------." << endl;
-                //cout << "| Eklemek istediğiniz Kuryenin bilgilerini giriniz |" << endl;
-                //cout << "'--------------------------------------------------'" << endl;
-// +PROTECTED
+                string record[7];
 
-                // candies MOORE CANDIEEEES!!
                 system("echo \".--------------------------------------------------.\" | lolcat");
                 system("echo \"| Eklemek istediğiniz Kuryenin bilgilerini giriniz |\" | lolcat");
                 system("echo \"'--------------------------------------------------'\" | lolcat");
                 cout << "`->";
 
-// +PROTECTED
-                //cout << " TC     " << endl; cout << "     `-> "; cin >> record[0];
-                //cout << " Isim   " << endl; cout << "     `-> "; cin >> record[1];
-                //cout << " Soyisim" << endl; cout << "     `-> "; cin >> record[2];
-                //cout << " Yas    " << endl; cout << "     `-> "; cin >> record[3];
-                //cout << " Siparis" << endl; cout << "     `-> "; cin >> record[4];
-// +PROTECTED
-
-                string empty; getline(cin,empty); // This line is just for preventing C++'s obscurity.
-                cout << " TC     " << endl; cout << "     `-> "; getline(cin,record[0]);
-                cout << " Isim   " << endl; cout << "     `-> "; getline(cin,record[1]);
-                cout << " Soyisim" << endl; cout << "     `-> "; getline(cin,record[2]);
-                cout << " Yas    " << endl; cout << "     `-> "; getline(cin,record[3]);
-                cout << " Siparis" << endl; cout << "     `-> "; getline(cin,record[4]);
+                string cppIsOdd; getline(cin,cppIsOdd); // This line is just for preventing C++'s obscurity.
+                cout << " TC            " << endl; cout << "     `-> "; getline(cin,record[0]);
+                cout << " Isim          " << endl; cout << "     `-> "; getline(cin,record[1]);
+                cout << " Soyisim       " << endl; cout << "     `-> "; getline(cin,record[2]);
+                cout << " Yas           " << endl; cout << "     `-> "; getline(cin,record[3]);
+                cout << " Siparis       " << endl; cout << "     `-> "; getline(cin,record[4]);
+                cout << " Cinsiyet      " << endl; cout << "     `-> "; getline(cin,record[5]);
+                cout << " Teslimat Nok. " << endl; cout << "     `-> "; getline(cin,record[6]);
                 system("clear");
 
-                //ofstream file("database.txt", ios::out | ios::app);
                 ofstream file("database.txt", ios::app);
-                for(int i=0 ;i<5 ;i++)
+                for(int i=0 ;i<7 ;i++)
                 {
                         file << '|'<< record[i]<< setw(16 - (record[i].size()));
                 }
@@ -126,11 +115,10 @@ class Operation
                 file.close();
                 system("clear");
                 list();
-                // MOOAAR!
+
                 system("echo \".--------------------------.\" | lolcat");
                 system("echo \"| Kayit basariyla eklendi! |\" | lolcat");
                 system("echo \"'--------------------------'\" | lolcat");
-
         }
 };
 
@@ -139,7 +127,6 @@ class UserInterface
         public:
                 UserInterface()
                 {
-
                         cout << ".-------------------------------------------------------------------------------." << endl;
                         cout << "|             _         _             _                                         |"<< endl;
                         cout << "|            | | ____ _| | __ _ ___  | | ____ _ _ __ __ _  ___                  |"<< endl;
@@ -160,7 +147,7 @@ class UserInterface
                                 cout << "`-> 3 ~ EKLE     " << endl;
                                 cout << "`-> 4 ~ GUNCELLE " << endl;
                                 cout << "`-> 5 ~ SIL      " << endl;
-                                cout << "|                " << endl;
+                                cout << "                " << endl;
                                 cout << "`-> 0 ~ [CIKIS]  " << endl;
                                 cout << ">> ";
 
