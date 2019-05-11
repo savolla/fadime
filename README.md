@@ -6,8 +6,11 @@ This my *stupid* <del>homework</del>
 
 # TODO List
 
+-   Add current time when logging
+    - use ctime header
+
 -   Create Two more functions
-    -   `update()` and `find()`
+    -   `update()` and <del>`find()`</del>
 
 -   <del>Order is not working properly</del>
     -   <del>Use `getline()` instead of `cin`</del>
