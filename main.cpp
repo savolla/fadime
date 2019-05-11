@@ -79,6 +79,7 @@ class Operation
                 list();
 
                 // nice message with candies :)
+                              
                 system("echo \".-------------------------.\" | lolcat");
                 system("echo \"|Kayit basarıyla silindi!!|\" | lolcat");
                 system("echo \"'-------------------------'\" | lolcat");
@@ -146,12 +147,10 @@ class Operation
                 system("clear");
 
                 // nice message with candies :)
+
                 system("echo \".------------------.\" | lolcat");
                 system("echo \"|Bulunan kayıtlar: |\" | lolcat");
                 system("echo \"'------------------'\" | lolcat");
-
-                for (int i=0; i< )
-                cout << "| \"" << value << "\" icin bulunan kayitlar" << endl;
 
                 // Drawing a line above the found values.
                 cout << ".";
@@ -195,6 +194,21 @@ class UserInterface
                         cout << "`-> Su anda ne yapmak istersiniz ?" << endl;
                         cout << "|                                 " << endl;
                 }
+                void popupMessage(string textMessage, string variable = "")
+                {
+                        int lengthOfTextMessage = textMessage.length();
+                        int lengthOfVariable = variable.length();
+                        // drawing upper line
+                        cout << ".-";
+                        for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
+                        cout << "-."; cout << endl;
+                        // drawing the message
+                        cout << "| " << variable << " " << textMessage << " |" <<  endl;
+                        // drawing the lower
+                        cout << "'~";
+                        for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
+                        cout << "~'"; cout << endl;
+                }
                 int menu()
                 {
                         while (true)
@@ -222,23 +236,6 @@ class UserInterface
                         }
                         cout << endl;
                 }
-
-                void popupMessage(string textMessage, string variable = "")
-                {
-                        int lengthOfTextMessage = textMessage.length();
-                        int lengthOfVariable = variable.length();
-                        // drawing upper line
-                        cout << ".-";
-                        for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
-                        cout << "-."; cout << endl;
-                        // drawing the message
-                        cout << "| " << variable << " " << textMessage << " |" <<  endl;
-                        // drawing the lower
-                        cout << "'~";
-                        for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
-                        cout << "~'"; cout << endl;
-                }
-
 };
 
 class Automation:
