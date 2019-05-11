@@ -14,7 +14,6 @@ class Carrier
         string age;
         unsigned char gender;
         string location;
-
     public:
         // setters
         void setName(string x){name = x;}
@@ -50,7 +49,6 @@ class UserInterface
                 cout << "`-> Su anda ne yapmak istersiniz ?" << endl;
                 cout << "|                                 " << endl;
         }
-
         static void popupMessage(string textMessage, string variable = "")
         {
                 int lengthOfTextMessage = textMessage.length();
@@ -96,7 +94,6 @@ class Operation
                 ifstream originalFile("database.txt", ios::in);
                 ofstream temporaryFile("tmp.txt", ios::app);
                 string placeHolderString = "";
-
                 while (getline(originalFile, placeHolderString))
                 {
                         if (placeHolderString.find(TCno) != string::npos) {
@@ -106,7 +103,6 @@ class Operation
                 }
                 originalFile.close();
                 temporaryFile.close();
-
                 remove("database.txt");
                 rename("tmp.txt","database.txt");
                 system("clear");
@@ -117,10 +113,8 @@ class Operation
         {
                 system("clear");
                 string record[7];
-
                 UserInterface::popupMessage("Eklemek Istediginiz Kuryenin Bilgilerini Giriniz");
                 cout << "`->";
-
                 string cppIsOdd; getline(cin,cppIsOdd); // This line is just for preventing C++'s obscurity.
                 cout << " TC            " << endl; cout << "     `-> "; getline(cin,record[0]);
                 cout << " Isim          " << endl; cout << "     `-> "; getline(cin,record[1]);
@@ -130,7 +124,6 @@ class Operation
                 cout << " Cinsiyet      " << endl; cout << "     `-> "; getline(cin,record[5]);
                 cout << " Teslimat Nok. " << endl; cout << "     `-> "; getline(cin,record[6]);
                 system("clear");
-
                 ofstream file("database.txt", ios::app);
                 for(int i=0 ;i<7 ;i++)
                 {
@@ -140,7 +133,6 @@ class Operation
                 file.close();
                 system("clear");
                 list();
-
                 UserInterface::popupMessage("Adli Kurye Eklendi",record[1]+" "+record[2]);
         }
         void find()
@@ -153,7 +145,6 @@ class Operation
                 ifstream originalFile("database.txt", ios::in);
                 ofstream temporaryFile("tmp.txt", ios::out);
                 string placeHolderString = "";
-
                 while (getline(originalFile, placeHolderString))
                 {
                         if (placeHolderString.find(value) == string::npos)
@@ -165,27 +156,22 @@ class Operation
                 }
                 originalFile.close();
                 temporaryFile.close();
-
                 fstream file;
                 string contentsOfTmptxt;
                 file.open("tmp.txt",ios::in);
                 system("clear");
-
                 UserInterface::popupMessage("Bulunan Kayitlar: ");
-
                 // Drawing a line above the found values.
                 cout << ".";
                 for (int i=0; i<=117; i++) {cout << "-";}
                 cout << ".\n" << endl;
                 for (int i=0; i<170; i++) {cout << "\b";}
-
                 // feeding screen with contents of tmp.txt
                 while(!file.eof())
                 {
                         getline(file,contentsOfTmptxt);
                         cout << contentsOfTmptxt << endl;
                 }
-
                 // Drawing a line below the found values.
                 for (int i=0; i<170; i++) {cout << "\b";}
                 cout << "\'";
@@ -198,7 +184,6 @@ class Operation
         {
         }
 };
-
 
 class Automation:
         public Carrier,
@@ -226,8 +211,7 @@ class Automation:
                         else if (choiseFromMenu == 3){add();}
                         else if (choiseFromMenu == 4){update();}
                         else if (choiseFromMenu == 5){del();}
-                        //else if (choiseFromMenu == 0){cout << "Güle güle :)"; return 0;}
-                        else if (choiseFromMenu == 0){system("clear && echo \"Güle Güle! :)\" | lolcat"); return 0;}
+                        else if (choiseFromMenu == 0){cout << "Gule gule :)"; return 0;}
                         else {cout << "Yanlış bir karakter girdiniz" << endl;}
                 }
                 cout << endl;
