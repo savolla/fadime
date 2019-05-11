@@ -11,7 +11,7 @@ class Carrier
         string surname;
         string TC;
         string order;
-        int age;
+        string age;
     public:
         // setters
         void setName(string x){name = x;}
@@ -24,7 +24,7 @@ class Carrier
         string getSurname(){return surname;}
         string getTC(){return TC;}
         string getOrder(){return order;}
-        int getAge(){return age;}
+        string getAge(){return age;}
 };
 
 class Operation
@@ -42,15 +42,18 @@ class Operation
                         getline(file,contentsOfDatabase);
                         cout << contentsOfDatabase << endl;
                 }
-                // fake but nice separator. not mendatory but still nice also with sauce ;)
-                cout << "'-------------------------------------------------------------------------------'" << endl;
+                // Drawing a line below the database.
+                for (int i=0; i<170; i++) {cout << "\b";}
+                cout << "\'";
+                for (int i=0; i<=78; i++) {cout << "-";}
+                cout << "\'\n" << endl;
         }
         void update() {}
         void del()
                 {
                 system("clear");
                 list();
-                string TCno;cout << "Silinecek degeri giriniz" << endl;cout << "`-> "; cin >> TCno;
+                string TCno;cout << "Silinecek Kuryenin TC kimlik numarası: " << endl;cout << "`-> "; cin >> TCno;
                 ifstream originalFile("database.txt", ios::in);
                 ofstream temporaryFile("tmp.txt", ios::app);
                 string placeHolderString = "";
@@ -69,9 +72,11 @@ class Operation
                 rename("tmp.txt","database.txt");
                 system("clear");
                 list();
+// +PROTECTED
                 //cout << ".--------------------------." << endl;
                 //cout << "| Kayıt başarıyla silindi! |" << endl;
                 //cout << "'--------------------------'" << endl;
+// +PROTECTED
 
                 // nice message with candy
                 system("echo \".-------------------------.\" | lolcat");
@@ -83,20 +88,32 @@ class Operation
         {
                 system("clear");
                 string record[5];
+// +PROTECTED
                 //cout << ".--------------------------------------------------." << endl;
                 //cout << "| Eklemek istediğiniz Kuryenin bilgilerini giriniz |" << endl;
                 //cout << "'--------------------------------------------------'" << endl;
+// +PROTECTED
 
                 // candies MOORE CANDIEEEES!!
                 system("echo \".--------------------------------------------------.\" | lolcat");
                 system("echo \"| Eklemek istediğiniz Kuryenin bilgilerini giriniz |\" | lolcat");
                 system("echo \"'--------------------------------------------------'\" | lolcat");
                 cout << "`->";
-                cout << " TC     " << endl; cout << "     `-> "; cin >> record[0];
-                cout << " Isim   " << endl; cout << "     `-> "; cin >> record[1];
-                cout << " Soyisim" << endl; cout << "     `-> "; cin >> record[2];
-                cout << " Yas    " << endl; cout << "     `-> "; cin >> record[3];
-                cout << " Siparis" << endl; cout << "     `-> "; cin >> record[4];
+
+// +PROTECTED
+                //cout << " TC     " << endl; cout << "     `-> "; cin >> record[0];
+                //cout << " Isim   " << endl; cout << "     `-> "; cin >> record[1];
+                //cout << " Soyisim" << endl; cout << "     `-> "; cin >> record[2];
+                //cout << " Yas    " << endl; cout << "     `-> "; cin >> record[3];
+                //cout << " Siparis" << endl; cout << "     `-> "; cin >> record[4];
+// +PROTECTED
+
+                string empty; getline(cin,empty); // This line is  just for prevent C++'s obscurity.
+                cout << " TC     " << endl; cout << "     `-> "; getline(cin,record[0]);
+                cout << " Isim   " << endl; cout << "     `-> "; getline(cin,record[1]);
+                cout << " Soyisim" << endl; cout << "     `-> "; getline(cin,record[2]);
+                cout << " Yas    " << endl; cout << "     `-> "; getline(cin,record[3]);
+                cout << " Siparis" << endl; cout << "     `-> "; getline(cin,record[4]);
                 system("clear");
 
                 //ofstream file("database.txt", ios::out | ios::app);
@@ -107,6 +124,13 @@ class Operation
                 }
                 file << "|"<< endl;
                 file.close();
+                system("clear");
+                list();
+                // MOOAAR!
+                system("echo \".--------------------------.\" | lolcat");
+                system("echo \"| Kayit basariyla eklendi! |\" | lolcat");
+                system("echo \"'--------------------------'\" | lolcat");
+
         }
 };
 

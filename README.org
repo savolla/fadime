@@ -1,5 +1,0 @@
-This my /stupid/ +homework+
-
-* TODO List
-- Order is not working properly
-  - Use ~getline()~ instead of ~cin~
