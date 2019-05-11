@@ -9,3 +9,6 @@
 |89338729322     |Mehmet          |Er              |17              |Servo Motor     |Erkek           |Duzce           |
 |83372281733     |Can             |Er              |13              |n298l dc mot.   |Erkek           |Kocaeli         |
 |89322238288     |Abdullah        |Birol           |22              |Cikolata        |Erkek           |Istanbul        |
+|84927384722     |Mahmut          |Yılmaz          |23              |Rulman          |Erkek           |Gaziantep       |
+|74623184433     |Mikael          |Akerfeldt       |45              |Gibson          |Erkek           |Istanbul        |
+|48438392822     |Halil           |Avci            |45              |Servo Motor     |Erkek           |Kocaeli         |

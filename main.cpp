@@ -34,6 +34,40 @@ class Carrier
         string getLocation(){return location;}
 };
 
+class UserInterface
+{
+        public:
+        UserInterface()
+        {
+                cout << ".-------------------------------------------------------------------------------." << endl;
+                cout << "|             _         _             _                                         |"<< endl;
+                cout << "|            | | ____ _| | __ _ ___  | | ____ _ _ __ __ _  ___                  |"<< endl;
+                cout << "|            | |/ / _` | |/ _` / __| | |/ / _` | '__/ _` |/ _ \\                 |"<< endl;
+                cout << "|            |   < (_| | | (_| \\ __\\ |   < (_| | | | (_| | (_) |                |"<< endl;
+                cout << "|            |_|\\_\\__,_|_|\\__,_|___/ |_|\\_\\__,_|_|  \\__, |\\___/                 |"<< endl;
+                cout << "|                                                   |___/                       |"<< endl;
+                cout << "'-------------------------------------------------------------------------------'" << endl;
+                cout << "`-> Su anda ne yapmak istersiniz ?" << endl;
+                cout << "|                                 " << endl;
+        }
+
+        static void popupMessage(string textMessage, string variable = "")
+        {
+                int lengthOfTextMessage = textMessage.length();
+                int lengthOfVariable = variable.length();
+                // drawing upper line
+                cout << ".-";
+                for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
+                cout << "-."; cout << endl;
+                // drawing the message
+                cout << "| " << variable << " " << textMessage << " |" <<  endl;
+                // drawing the lower
+                cout << "'~";
+                for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
+                cout << "~'"; cout << endl;
+        }
+};
+
 class Operation
 {
     public:
@@ -77,21 +111,14 @@ class Operation
                 rename("tmp.txt","database.txt");
                 system("clear");
                 list();
-
-                // nice message with candies :)
-                              
-                system("echo \".-------------------------.\" | lolcat");
-                system("echo \"|Kayit basarıyla silindi!!|\" | lolcat");
-                system("echo \"'-------------------------'\" | lolcat");
+                UserInterface::popupMessage("Kayit(lar) Basariyla silindi!!");
         }
         void add()
         {
                 system("clear");
                 string record[7];
 
-                system("echo \".--------------------------------------------------.\" | lolcat");
-                system("echo \"| Eklemek istediğiniz Kuryenin bilgilerini giriniz |\" | lolcat");
-                system("echo \"'--------------------------------------------------'\" | lolcat");
+                UserInterface::popupMessage("Eklemek Istediginiz Kuryenin Bilgilerini Giriniz");
                 cout << "`->";
 
                 string cppIsOdd; getline(cin,cppIsOdd); // This line is just for preventing C++'s obscurity.
@@ -114,9 +141,7 @@ class Operation
                 system("clear");
                 list();
 
-                system("echo \".--------------------------.\" | lolcat");
-                system("echo \"| Kayit basariyla eklendi! |\" | lolcat");
-                system("echo \"'--------------------------'\" | lolcat");
+                UserInterface::popupMessage("Adli Kurye Eklendi",record[1]+" "+record[2]);
         }
         void find()
         {
@@ -146,11 +171,7 @@ class Operation
                 file.open("tmp.txt",ios::in);
                 system("clear");
 
-                // nice message with candies :)
-
-                system("echo \".------------------.\" | lolcat");
-                system("echo \"|Bulunan kayıtlar: |\" | lolcat");
-                system("echo \"'------------------'\" | lolcat");
+                UserInterface::popupMessage("Bulunan Kayitlar: ");
 
                 // Drawing a line above the found values.
                 cout << ".";
@@ -178,71 +199,40 @@ class Operation
         }
 };
 
-class UserInterface
-{
-        public:
-                UserInterface()
-                {
-                        cout << ".-------------------------------------------------------------------------------." << endl;
-                        cout << "|             _         _             _                                         |"<< endl;
-                        cout << "|            | | ____ _| | __ _ ___  | | ____ _ _ __ __ _  ___                  |"<< endl;
-                        cout << "|            | |/ / _` | |/ _` / __| | |/ / _` | '__/ _` |/ _ \\                 |"<< endl;
-                        cout << "|            |   < (_| | | (_| \\ __\\ |   < (_| | | | (_| | (_) |                |"<< endl;
-                        cout << "|            |_|\\_\\__,_|_|\\__,_|___/ |_|\\_\\__,_|_|  \\__, |\\___/                 |"<< endl;
-                        cout << "|                                                   |___/                       |"<< endl;
-                        cout << "'-------------------------------------------------------------------------------'" << endl;
-                        cout << "`-> Su anda ne yapmak istersiniz ?" << endl;
-                        cout << "|                                 " << endl;
-                }
-                void popupMessage(string textMessage, string variable = "")
-                {
-                        int lengthOfTextMessage = textMessage.length();
-                        int lengthOfVariable = variable.length();
-                        // drawing upper line
-                        cout << ".-";
-                        for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
-                        cout << "-."; cout << endl;
-                        // drawing the message
-                        cout << "| " << variable << " " << textMessage << " |" <<  endl;
-                        // drawing the lower
-                        cout << "'~";
-                        for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
-                        cout << "~'"; cout << endl;
-                }
-                int menu()
-                {
-                        while (true)
-                        {
-                                cout << "`-> 1 ~ LISTELE  " << endl;
-                                cout << "`-> 2 ~ BUL      " << endl;
-                                cout << "`-> 3 ~ EKLE     " << endl;
-                                cout << "`-> 4 ~ GUNCELLE " << endl;
-                                cout << "`-> 5 ~ SIL      " << endl;
-                                cout << "                " << endl;
-                                cout << "`-> 0 ~ [CIKIS]  " << endl;
-                                cout << ">> ";
-
-                                int choiseFromMenu;
-                                Operation operationObject;
-                                cin >> choiseFromMenu;
-                                if      (choiseFromMenu == 1){operationObject.list();}
-                                else if (choiseFromMenu == 2){operationObject.find();}
-                                else if (choiseFromMenu == 3){operationObject.add();}
-                                else if (choiseFromMenu == 4){operationObject.update();}
-                                else if (choiseFromMenu == 5){operationObject.del();}
-                                //else if (choiseFromMenu == 0){cout << "Güle güle :)"; return 0;}
-                                else if (choiseFromMenu == 0){system("clear && echo \"Güle Güle! :)\" | lolcat"); return 0;}
-                                else {cout << "Yanlış bir karakter girdiniz" << endl;}
-                        }
-                        cout << endl;
-                }
-};
 
 class Automation:
         public Carrier,
         public Operation,
         public UserInterface
-{};
+{
+        public:
+        int menu()
+        {
+                while (true)
+                {
+                        cout << "`-> 1 ~ LISTELE  " << endl;
+                        cout << "`-> 2 ~ BUL      " << endl;
+                        cout << "`-> 3 ~ EKLE     " << endl;
+                        cout << "`-> 4 ~ GUNCELLE " << endl;
+                        cout << "`-> 5 ~ SIL      " << endl;
+                        cout << "                " << endl;
+                        cout << "`-> 0 ~ [CIKIS]  " << endl;
+                        cout << ">> ";
+
+                        int choiseFromMenu;
+                        cin >> choiseFromMenu;
+                        if      (choiseFromMenu == 1){list();}
+                        else if (choiseFromMenu == 2){find();}
+                        else if (choiseFromMenu == 3){add();}
+                        else if (choiseFromMenu == 4){update();}
+                        else if (choiseFromMenu == 5){del();}
+                        //else if (choiseFromMenu == 0){cout << "Güle güle :)"; return 0;}
+                        else if (choiseFromMenu == 0){system("clear && echo \"Güle Güle! :)\" | lolcat"); return 0;}
+                        else {cout << "Yanlış bir karakter girdiniz" << endl;}
+                }
+                cout << endl;
+        }
+};
 
 int main(void)
 {
