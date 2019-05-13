@@ -1,16 +1,16 @@
 
 # Table of Contents
 
-1.  [Giriş](#orga1446fd)
-2.  [Kullanım](#org7420188)
-3.  [Programın iç yapısı](#orgece1258)
-    1.  [database.txt](#org411b486)
-    2.  [main.cpp](#orgd87b0df)
-        1.  [Classlar ve Açıklamaları](#orgf8033a2)
+1.  [Giriş](#org1d4610c)
+2.  [Kullanım](#org62b619e)
+3.  [Programın iç yapısı](#org82d4a10)
+    1.  [database.txt](#orgfd41afc)
+    2.  [main.cpp](#org398ae50)
+        1.  [Classlar ve Açıklamaları](#orgca5413a)
 
 
 
-<a id="orga1446fd"></a>
+<a id="org1d4610c"></a>
 
 # Giriş
 
@@ -27,7 +27,7 @@
     7.  Tesliman noktası
 
 
-<a id="org7420188"></a>
+<a id="org62b619e"></a>
 
 # Kullanım
 
@@ -38,7 +38,7 @@
 -   Seçenekler kullanıcıyı adım adım yönlendirme özelliğine sahiptir.
 
 
-<a id="orgece1258"></a>
+<a id="org82d4a10"></a>
 
 # Programın iç yapısı
 
@@ -47,7 +47,7 @@
     -   database.txt
 
 
-<a id="org411b486"></a>
+<a id="orgfd41afc"></a>
 
 ## database.txt
 
@@ -55,7 +55,7 @@
 -   Program her işlemde bu dosyayı modifiye eder
 
 
-<a id="orgd87b0df"></a>
+<a id="org398ae50"></a>
 
 ## main.cpp
 
@@ -66,7 +66,7 @@
     4.  Automation *(otomasyon)*
 
 
-<a id="orgf8033a2"></a>
+<a id="orgca5413a"></a>
 
 ### Classlar ve Açıklamaları
 

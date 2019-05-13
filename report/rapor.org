@@ -1,4 +1,5 @@
 #+TITLE: Kalas Kargo Proje Raporu
+#+AUTHOR: Oleksiy Nehluadyuk (182113201)
 
 * Giriş
 - Bu projede, "Kalas Kargo" adlı bir kargo şirketinin, Kuryelerin şahsi
