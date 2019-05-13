@@ -5,7 +5,7 @@ This my *stupid* <del>homework</del>
 
 # TODO List
 
--   I'm having so much trouble in `Operation::update()`
+-   `Operation::update()` is a bithc
     - Find a way to fix it
 
 -   <del>Create Two more functions</del>
