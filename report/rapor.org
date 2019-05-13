@@ -1,0 +1,111 @@
+#+TITLE: Kalas Kargo Proje Raporu
+
+* Giriş
+- Bu projede, "Kalas Kargo" adlı bir kargo şirketinin, Kuryelerin şahsi
+  bilgileri ve teslimatını yapacakları ürünlerin bilgileri kayıt edilir.
+
+- Kayıt edilen bilgiler sırasıyla;
+  1. TC kimlik numarası
+  2. İsim
+  3. Soy İsim
+  4. Yaş
+  5. Kuryenin taşıdığı ürün (Sipariş)
+  6. Cinsiyet
+  7. Tesliman noktası
+
+* Kullanım
+- Kullanıcı Programı açtığında, karşısına şirketin adı ve altında sıralanmış
+  işlem seçenekleri sunulur
+- Bu seçenekleri seçmek için, başında bulunan numaraların yazılıp ~Enter~ tuşuna
+  basılması gerekir
+- Seçenekler kullanıcıyı adım adım yönlendirme özelliğine sahiptir.
+
+* Programın iç yapısı
+ - Proje içinde 2 temel dosya bulunur;
+   - main.cpp
+   - database.txt
+
+** database.txt
+- Kalas Kargo'nun Kurye bilgilerinin kayıt edildiği dosya
+- Program her işlemde bu dosyayı modifiye eder
+
+** main.cpp
+ - Program temelde 4 class'dan oluşur
+   1. Carrier /(kurye)/
+   2. UserInterface /(Kullanıcı arayüzü)/
+   3. Operation /(işlem)/
+   4. Automation /(otomasyon)/
+
+*** Classlar ve Açıklamaları
+**** Carrier
+- Kuryenin bütün bilgilerinin ve metodlarının bulunduğu klastır
+- Yapısı:
+  #+BEGIN_SRC plantuml :file uml/c.png
+@startuml
+Class dummy {
+{field} - name : string
+{field} - surname : string
+{field} - TC : string
+{field} - order : string
+{field} - age : string
+{field} - gender : string
+{field} - location : string
+{method} + setName()
+{method} + getName() : string
+{method} + setSurname()
+{method} + getSurname() : string
+{method} + setTC()
+{method} + getTC() : string
+{method} + setOrder()
+{method} + getOrder() : string
+{method} + setAge()
+{method} + getAge() : string
+{method} + setGender()
+{method} + getGender() : string
+{method} + setLocation()
+{method} + getLocation() : string
+}
+@enduml
+  #+END_SRC
+
+**** UserInterface
+- Kullanıcının programla olan etkileşimini sağlayan klastır
+- Yapısı:
+  #+BEGIN_SRC plantuml :file uml/ui.jpg
+@startuml
+class UserInterface{
+{method} + UserInterface()
+{static} + popupMessage()
+{method} + authentication()
+}
+@enduml
+  #+END_SRC
+
+**** Operation
+- *database.txt* dosyasında değişiklik yapan klastır
+- Yapısı:
+  #+BEGIN_SRC plantuml :file uml/op.png
+class Operation{
+{method} + list()
+{method} + del()
+{method} + add()
+{method} + find()
+{method} + update()
+}
+  #+END_SRC
+
+**** Automation
+- *Carrier*, *UserInterface*, *Operation* klaslarının tek çatı altında birleştiği
+  klastır
+- Yapısı
+  #+BEGIN_SRC plantuml :file uml/auto.png
+@startuml
+class Carrier
+class UserInterface
+class Operation
+
+Carrier --> Automation
+UserInterface --> Automation
+Operation --> Automation
+@enduml
+  #+END_SRC
