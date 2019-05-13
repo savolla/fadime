@@ -46,8 +46,6 @@ class UserInterface
                 cout << "|            |_|\\_\\__,_|_|\\__,_|___/ |_|\\_\\__,_|_|  \\__, |\\___/                 |"<< endl;
                 cout << "|                                                   |___/                       |"<< endl;
                 cout << "'-------------------------------------------------------------------------------'" << endl;
-                cout << "`-> Su anda ne yapmak istersiniz ?" << endl;
-                cout << "|                                 " << endl;
         }
         static void popupMessage(string textMessage, string variable = "")
         {
@@ -64,6 +62,34 @@ class UserInterface
                 for (int i=0; i<(lengthOfVariable + lengthOfTextMessage + 1); i++) { cout << "~";}
                 cout << "~'"; cout << endl;
         }
+                void authentication()
+                {
+                        string username, password;
+                        for (int i=0; i<3; i++)
+                        {
+                                cout << "username: "; getline(cin,username);
+                                cout << "password: "; getline(cin,password);
+                                if (username == "savolla" && password == "123")
+                                {
+                                        system("clear");
+                                        cout << "Kalas Kargo Otomasyon Sistemine Hos Geldiniz !\n" << endl;
+                                        goto safeExit;
+                                        
+                                }
+                                else
+                                {
+                                        system("clear");
+                                        cout << "Sifre veya Kullanici adi hatali." << endl;
+                                        cout << "Lutfen tekrar deneyiniz." << endl;
+                                }
+                        }
+                        system("clear");
+                        cout << "Sifre ve Kullanici adini 3 defa yanlis girdiniz." << endl;
+                        cout << "cikiliyor.." << endl;
+                        exit(0);
+                        safeExit:
+                        cout << "" << endl; // goto labels expect a statement to work
+                }
 };
 
 class Operation
@@ -81,7 +107,7 @@ class Operation
                         cout << contentsOfDatabase << endl;
                 }
                 // Drawing a line below the database.
-                for (int i=0; i<170; i++) {cout << "\b";}
+                for (int i=0; i<174; i++) {cout << "\b";}
                 cout << "\'";
                 for (int i=0; i<=117; i++) {cout << "-";}
                 cout << "\'\n" << endl;
@@ -165,7 +191,7 @@ class Operation
                 cout << ".";
                 for (int i=0; i<=117; i++) {cout << "-";}
                 cout << ".\n" << endl;
-                for (int i=0; i<170; i++) {cout << "\b";}
+                for (int i=0; i<174; i++) {cout << "\b";}
                 // feeding screen with contents of tmp.txt
                 while(!file.eof())
                 {
@@ -173,7 +199,7 @@ class Operation
                         cout << contentsOfTmptxt << endl;
                 }
                 // Drawing a line below the found values.
-                for (int i=0; i<170; i++) {cout << "\b";}
+                for (int i=0; i<174; i++) {cout << "\b";}
                 cout << "\'";
                 for (int i=0; i<=117; i++) {cout << "-";}
                 cout << "\'\n" << endl;
@@ -182,6 +208,43 @@ class Operation
         }
         void update()
         {
+                fstream file;
+                string contentsOfDatabase, row, column, newValue;
+                int indexOfChangedValue;
+                list();
+                string cppIsOdd; getline(cin,cppIsOdd); // This line is just for preventing C++'s obscurity.
+                cout << "Satir (TC Kimlik): "; getline(cin,row);
+                ifFieldNameNotFound:
+                cout << "Sutun (Alan Adi) : "; getline(cin,column);
+                cout << "Yeni Deger       : "; getline(cin,newValue);
+                for (int i=0; i<16-newValue.length(); i++)
+                {
+                        newValue = newValue + " ";
+                }
+                file.open("database.txt", ios::in);
+                while(!file.eof())
+                {
+                        getline(file, contentsOfDatabase);
+                        if (contentsOfDatabase.substr(1,11) == row)
+                        {
+                                if      (column == "TC"          ){indexOfChangedValue = 1;}
+                                else if (column == "ISIM"        ){indexOfChangedValue = 18;}
+                                else if (column == "SOYISIM"     ){indexOfChangedValue = 35;}
+                                else if (column == "YAS"         ){indexOfChangedValue = 52;}
+                                else if (column == "SIPARIS"     ){indexOfChangedValue = 69;}
+                                else if (column == "CINSIYET"    ){indexOfChangedValue = 86;}
+                                else if (column == "TESLIMAT NOK"){indexOfChangedValue = 103;}
+                                else {cout << column <<  " Alan Adi Bulunamadi. Tekrar deneyiniz" << endl; goto ifFieldNameNotFound;}
+
+                                contentsOfDatabase.replace(indexOfChangedValue, 16, newValue);
+                                cout << contentsOfDatabase << endl;
+                        }
+                        cout << contentsOfDatabase << endl;
+                }
+                
+                fstream tmp;
+                string updatedContent;
+                tmp.open("tmp.txt", ios::out);
         }
 };
 
@@ -221,7 +284,7 @@ class Automation:
 int main(void)
 {
         Automation object;
+        object.authentication();
         object.menu();
-        int a = 0;
         return 0;
 }
