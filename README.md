@@ -5,7 +5,7 @@ This my *stupid* <del>homework</del>
 
 # TODO List
 
--   `Operation::update()` is a bithc
+-   `Operation::update()` is a bitch
     - Find a way to fix it
 
 -   <del>Create Two more functions</del>
